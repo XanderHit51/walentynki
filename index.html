@@ -60,27 +60,37 @@
   <div class="card">
     <h1>Czy zostaniesz moją walentynką Amelciu Ksepko? ❤️</h1>
     <div class="buttons">
-      <button class="yes" onclick="sayYes()">Tak</button>
+      <button class="yes" id="yesBtn" onclick="sayYes()">Tak</button>
       <button class="no" id="noBtn" onmouseenter="moveNo()">Nie</button>
     </div>
     <div id="message"></div>
   </div>
 
   <script>
-    // Wiadomości przy Tak
     const yesMessages = [
       "TAKKKKK! Nie mogę się doczekać aż razem spędzimy ten piękny dzień skarbie, Kocham cię i bardzo się cieszę Amelciu Moja wspaniała piękna... ❤️",
       "I przepraszam Cię bardzo Moja kochana za wszystko, ale proszeeee nie róbmy tej przerwy bo nie przeżyję bez ciebie i boję się, że wtedy Cię stracę 😢"
+      "Prosze porozmawiajmy o tym myszko,Kocham cię strasnie,wiem ze zle robiłem..."
     ];
-    let yesIndex = 0; 
+    let yesIndex = 0;
+
+    const noBtn = document.getElementById("noBtn");
+    let noActive = true; // przycisk Nie działa dopóki nie klikniesz Tak
 
     function sayYes() {
       document.getElementById("message").textContent = yesMessages[yesIndex];
+
+      // Zniknięcie przycisku Nie po kliknięciu Tak
+      noBtn.style.display = "none";
+      noActive = false;
+
+      // Kolejna wiadomość przy kolejnym kliknięciu Tak
       if (yesIndex < yesMessages.length - 1) yesIndex++;
     }
 
-    // Wiadomości przy Nie (jeżeli uda się kliknąć)
     function sayNo() {
+      if (!noActive) return; // jeśli przycisk nie działa, nic nie rób
+
       const messages = [
         "A może jednak zmienisz zdanie? 🥺",
         "Rozumiem, może innym razem 😢",
@@ -94,9 +104,10 @@
       document.getElementById("message").textContent = messages[randomIndex];
     }
 
-    // Funkcja do uciekającego przycisku Nie
     function moveNo() {
-      const btn = document.getElementById("noBtn");
+      if (!noActive) return; // przestań uciekać jeśli przycisk nieaktywny
+
+      const btn = noBtn;
       const card = btn.parentElement;
       const cardRect = card.getBoundingClientRect();
 
