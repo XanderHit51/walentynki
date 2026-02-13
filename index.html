@@ -21,8 +21,9 @@
       border-radius: 20px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.15);
       text-align: center;
-      max-width: 320px;
+      max-width: 350px;
       width: 90%;
+      position: relative;
     }
 
     h1 { margin-bottom: 30px; }
@@ -31,6 +32,7 @@
       display: flex;
       gap: 15px;
       justify-content: center;
+      position: relative;
     }
 
     button {
@@ -40,6 +42,7 @@
       border-radius: 999px;
       cursor: pointer;
       transition: 0.2s;
+      position: relative;
     }
 
     .yes { background: #ef4444; color: white; }
@@ -48,37 +51,64 @@
 
     #message {
       margin-top: 25px;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Czy zostaniesz moją walentynką? ❤️</h1>
+    <h1>Czy zostaniesz moją walentynką Amelciu Ksepko? ❤️</h1>
     <div class="buttons">
       <button class="yes" onclick="sayYes()">Tak</button>
-      <button class="no" onclick="sayNo()">Nie</button>
+      <button class="no" id="noBtn" onmouseenter="moveNo()">Nie</button>
     </div>
     <div id="message"></div>
   </div>
 
   <script>
+    // Wiadomości przy Tak
+    const yesMessages = [
+      "TAKKKKK! Nie mogę się doczekać aż razem spędzimy ten piękny dzień skarbie, Kocham cię i bardzo się cieszę Amelciu Moja wspaniała piękna... ❤️",
+      "I przepraszam Cię bardzo Moja kochana za wszystko, ale proszeeee nie róbmy tej przerwy bo nie przeżyję bez ciebie i boję się, że wtedy Cię stracę 😢"
+    ];
+    let yesIndex = 0; 
+
     function sayYes() {
-      document.getElementById("message").textContent = "Jupi! Nie mogę się doczekać ❤️";
+      document.getElementById("message").textContent = yesMessages[yesIndex];
+      if (yesIndex < yesMessages.length - 1) yesIndex++;
     }
 
+    // Wiadomości przy Nie (jeżeli uda się kliknąć)
     function sayNo() {
       const messages = [
         "A może jednak zmienisz zdanie? 🥺",
         "Rozumiem, może innym razem 😢",
         "Żartowałem, nie masz wyjścia 😂🫵",
         "No zgódź się 😒",
-        "😭😭"
+        "😭😭",
+        "PROSZEEEEEEEE",
+        "Dostaniesz coś słodkiego :)"
       ];
-      // Wybiera losowy komunikat
       const randomIndex = Math.floor(Math.random() * messages.length);
       document.getElementById("message").textContent = messages[randomIndex];
+    }
+
+    // Funkcja do uciekającego przycisku Nie
+    function moveNo() {
+      const btn = document.getElementById("noBtn");
+      const card = btn.parentElement;
+      const cardRect = card.getBoundingClientRect();
+
+      const maxX = cardRect.width - btn.offsetWidth;
+      const maxY = cardRect.height - btn.offsetHeight;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      btn.style.position = 'absolute';
+      btn.style.left = randomX + 'px';
+      btn.style.top = randomY + 'px';
     }
   </script>
 </body>
