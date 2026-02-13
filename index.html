@@ -25,9 +25,7 @@
       width: 90%;
     }
 
-    h1 {
-      margin-bottom: 30px;
-    }
+    h1 { margin-bottom: 30px; }
 
     .buttons {
       display: flex;
@@ -44,18 +42,9 @@
       transition: 0.2s;
     }
 
-    .yes {
-      background: #ef4444;
-      color: white;
-    }
-
-    .yes:hover {
-      background: #dc2626;
-    }
-
-    .no {
-      background: #e5e7eb;
-    }
+    .yes { background: #ef4444; color: white; }
+    .yes:hover { background: #dc2626; }
+    .no { background: #e5e7eb; }
 
     #message {
       margin-top: 25px;
@@ -80,18 +69,16 @@
     }
 
     function sayNo() {
-      // Losowa decyzja: 50% szansy na naleganie
-      if (Math.random() < 0.5) {
-        document.getElementById("message").textContent = "A może jednak zmienisz zdanie? 🥺";
-      } else {
-        document.getElementById("message").textContent = "Rozumiem, może innym razem 😢";
-        } else {
-        document.getElementById("message").textContent = "Żartowałem nie masz wyjscia😂🫵";
-        } else {
-        document.getElementById("message").textContent = "No zgódz się😒";
-        } else {
-        document.getElementById("message").textContent = "😭😭";
-      }
+      const messages = [
+        "A może jednak zmienisz zdanie? 🥺",
+        "Rozumiem, może innym razem 😢",
+        "Żartowałem, nie masz wyjścia 😂🫵",
+        "No zgódź się 😒",
+        "😭😭"
+      ];
+      // Wybiera losowy komunikat
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      document.getElementById("message").textContent = messages[randomIndex];
     }
   </script>
 </body>
