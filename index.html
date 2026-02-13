@@ -28,11 +28,10 @@
 
     h1 { margin-bottom: 30px; }
 
-    .buttons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      position: relative;
+    #message {
+      margin-top: 25px;
+      font-size: 18px;
+      font-weight: bold;
     }
 
     button {
@@ -42,27 +41,21 @@
       border-radius: 999px;
       cursor: pointer;
       transition: 0.2s;
-      position: relative;
+      position: absolute;
     }
 
     .yes { background: #ef4444; color: white; }
     .yes:hover { background: #dc2626; }
     .no { background: #e5e7eb; }
-
-    #message {
-      margin-top: 25px;
-      font-size: 18px;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="card" id="card">
     <h1>Czy zostaniesz moją walentynką Amelciu Ksepko? ❤️</h1>
-    <div class="buttons">
-      <button class="yes" id="yesBtn" onclick="sayYes()">Tak</button>
-      <button class="no" id="noBtn" onmouseenter="moveNo()">Nie</button>
-    </div>
+
+    <button class="yes" id="yesBtn" style="left:50px; bottom:20px;" onclick="sayYes()">Tak</button>
+    <button class="no" id="noBtn" style="right:50px; bottom:20px;" onmouseenter="moveNo()">Nie</button>
+
     <div id="message"></div>
   </div>
 
@@ -74,21 +67,20 @@
     let yesIndex = 0;
 
     const noBtn = document.getElementById("noBtn");
-    let noActive = true; // przycisk Nie działa dopóki nie klikniesz Tak
+    const card = document.getElementById("card");
+    let noActive = true;
 
     function sayYes() {
       document.getElementById("message").textContent = yesMessages[yesIndex];
-
-      // Zniknięcie przycisku Nie po kliknięciu Tak
-      noBtn.style.display = "none";
-      noActive = false;
-
-      // Kolejna wiadomość przy kolejnym kliknięciu Tak
       if (yesIndex < yesMessages.length - 1) yesIndex++;
+
+      // wyłącz i ukryj przycisk Nie
+      noActive = false;
+      noBtn.style.display = "none";
     }
 
     function sayNo() {
-      if (!noActive) return; // jeśli przycisk nie działa, nic nie rób
+      if (!noActive) return;
 
       const messages = [
         "A może jednak zmienisz zdanie? 🥺",
@@ -104,10 +96,9 @@
     }
 
     function moveNo() {
-      if (!noActive) return; // przestań uciekać jeśli przycisk nieaktywny
+      if (!noActive) return;
 
       const btn = noBtn;
-      const card = btn.parentElement;
       const cardRect = card.getBoundingClientRect();
 
       const maxX = cardRect.width - btn.offsetWidth;
@@ -116,7 +107,6 @@
       const randomX = Math.floor(Math.random() * maxX);
       const randomY = Math.floor(Math.random() * maxY);
 
-      btn.style.position = 'absolute';
       btn.style.left = randomX + 'px';
       btn.style.top = randomY + 'px';
     }
