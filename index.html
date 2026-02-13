@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Walentynki</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffe4e6, #fecdd3, #fda4af);
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      text-align: center;
+      max-width: 320px;
+      width: 90%;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .yes {
+      background: #ef4444;
+      color: white;
+    }
+
+    .yes:hover {
+      background: #dc2626;
+    }
+
+    .no {
+      background: #e5e7eb;
+    }
+
+    #message {
+      margin-top: 25px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Czy zostaniesz moją walentynką? ❤️</h1>
+    <div class="buttons">
+      <button class="yes" onclick="sayYes()">Tak</button>
+      <button class="no" onclick="sayNo()">Nie</button>
+    </div>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    function sayYes() {
+      document.getElementById("message").textContent = "Jupi! Nie mogę się doczekać ❤️";
+    }
+
+    function sayNo() {
+      // Losowa decyzja: 50% szansy na naleganie
+      if (Math.random() < 0.5) {
+        document.getElementById("message").textContent = "A może jednak zmienisz zdanie? 🥺";
+      } else {
+        document.getElementById("message").textContent = "Rozumiem, może innym razem 😢";
+        } else {
+        document.getElementById("message").textContent = "Żartowałem nie masz wyjscia😂🫵";
+        } else {
+        document.getElementById("message").textContent = "No zgódz się😒";
+        } else {
+        document.getElementById("message").textContent = "😭😭";
+      }
+    }
+  </script>
+</body>
+</html>
