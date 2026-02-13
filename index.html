@@ -41,7 +41,7 @@
       border-radius: 999px;
       cursor: pointer;
       transition: 0.2s;
-      position: absolute;
+      position: relative;
     }
 
     .yes { background: #ef4444; color: white; }
@@ -52,53 +52,51 @@
 <body>
   <div class="card" id="card">
     <h1>Czy zostaniesz moją walentynką Amelciu Ksepko? ❤️</h1>
-
-    <button class="yes" id="yesBtn" style="left:50px; bottom:20px;" onclick="sayYes()">Tak</button>
-    <button class="no" id="noBtn" style="right:50px; bottom:20px;" onmouseenter="moveNo()">Nie</button>
-
+    <div class="buttons">
+      <button class="yes" id="yesBtn" onclick="sayYes()">Tak</button>
+      <button class="no" id="noBtn" onmouseenter="moveNo()" onclick="sayNo()">Nie</button>
+    </div>
     <div id="message"></div>
   </div>
 
   <script>
+    // Wiadomości przy Tak
     const yesMessages = [
       "TAKKKKK! Nie mogę się doczekać aż razem spędzimy ten piękny dzień skarbie, Kocham cię i bardzo się cieszę Amelciu Moja wspaniała piękna... ❤️",
       "I przepraszam Cię bardzo Moja kochana za wszystko, ale proszeeee nie róbmy tej przerwy bo nie przeżyję bez ciebie i boję się, że wtedy Cię stracę 😢"
     ];
     let yesIndex = 0;
 
-    const noBtn = document.getElementById("noBtn");
-    const card = document.getElementById("card");
-    let noActive = true;
-
+    // Funkcja dla Tak
     function sayYes() {
       document.getElementById("message").textContent = yesMessages[yesIndex];
       if (yesIndex < yesMessages.length - 1) yesIndex++;
 
-      // wyłącz i ukryj przycisk Nie
-      noActive = false;
-      noBtn.style.display = "none";
+      // Po kliknięciu Tak przycisk Nie znika
+      document.getElementById("noBtn").style.display = "none";
     }
 
+    // Wiadomości przy Nie
+    const noMessages = [
+      "A może jednak zmienisz zdanie? 🥺",
+      "Rozumiem, może innym razem 😢",
+      "Żartowałem, nie masz wyjścia 😂🫵",
+      "No zgódź się 😒",
+      "😭😭",
+      "PROSZEEEEEEEE",
+      "Dostaniesz coś słodkiego :)"
+    ];
+
+    // Funkcja dla Nie
     function sayNo() {
-      if (!noActive) return;
-
-      const messages = [
-        "A może jednak zmienisz zdanie? 🥺",
-        "Rozumiem, może innym razem 😢",
-        "Żartowałem, nie masz wyjścia 😂🫵",
-        "No zgódź się 😒",
-        "😭😭",
-        "PROSZEEEEEEEE",
-        "Dostaniesz coś słodkiego :)"
-      ];
-      const randomIndex = Math.floor(Math.random() * messages.length);
-      document.getElementById("message").textContent = messages[randomIndex];
+      const randomIndex = Math.floor(Math.random() * noMessages.length);
+      document.getElementById("message").textContent = noMessages[randomIndex];
     }
 
+    // Funkcja do uciekającego przycisku Nie
     function moveNo() {
-      if (!noActive) return;
-
-      const btn = noBtn;
+      const btn = document.getElementById("noBtn");
+      const card = document.getElementById("card");
       const cardRect = card.getBoundingClientRect();
 
       const maxX = cardRect.width - btn.offsetWidth;
@@ -107,6 +105,7 @@
       const randomX = Math.floor(Math.random() * maxX);
       const randomY = Math.floor(Math.random() * maxY);
 
+      btn.style.position = 'absolute';
       btn.style.left = randomX + 'px';
       btn.style.top = randomY + 'px';
     }
