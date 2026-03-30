@@ -1,114 +1,187 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Walentynki</title>
+  <meta charset="UTF-8">
+  <title>Dla Amelci ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #ff9a9e, #fad0c4, #fbc2eb);
+      overflow-x: hidden;
+      color: white;
+    }
+
+    header {
       height: 100vh;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      background: linear-gradient(135deg, #ffe4e6, #fecdd3, #fda4af);
-    }
-
-    .card {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      align-items: center;
       text-align: center;
-      max-width: 350px;
-      width: 90%;
       position: relative;
+      padding: 20px;
     }
 
-    h1 { margin-bottom: 30px; }
+    h1 {
+      font-size: 3.2em;
+      animation: fadeInDown 2s ease;
+    }
 
-    #message {
+    .subtitle {
+      font-size: 1.4em;
+      margin-top: 15px;
+      opacity: 0.9;
+      animation: fadeIn 3s ease;
+    }
+
+    .btn {
       margin-top: 25px;
-      font-size: 18px;
+      padding: 15px 32px;
+      border: none;
+      border-radius: 40px;
+      font-size: 1.1em;
+      cursor: pointer;
+      background: white;
+      color: #ff4e50;
+      transition: 0.3s;
       font-weight: bold;
     }
 
-    button {
-      padding: 12px 24px;
-      font-size: 18px;
-      border: none;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: 0.2s;
-      position: relative;
+    .btn:hover {
+      transform: scale(1.1);
     }
 
-    .yes { background: #ef4444; color: white; }
-    .yes:hover { background: #dc2626; }
-    .no { background: #e5e7eb; }
+    section {
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .card {
+      max-width: 750px;
+      margin: auto;
+      background: rgba(255,255,255,0.15);
+      padding: 35px;
+      border-radius: 25px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease;
+    }
+
+    .love-letter {
+      font-size: 1.3em;
+      line-height: 1.9em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      opacity: 0.85;
+    }
+
+    .heart {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 7s infinite ease-in;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -9px; left: 0; }
+    .heart::after { left: -9px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
   </style>
 </head>
 <body>
-  <div class="card" id="card">
-    <h1>Czy zostaniesz moją walentynką Amelciu Ksepko? ❤️</h1>
-    <div class="buttons">
-      <button class="yes" id="yesBtn" onclick="sayYes()">Tak</button>
-      <button class="no" id="noBtn" onmouseenter="moveNo()" onclick="sayNo()">Nie</button>
-    </div>
-    <div id="message"></div>
+
+<header>
+  <h1>Dla mojej Księżniczki Amelci 👑💖</h1>
+  <div class="subtitle">Jesteś najpiękniejszą częścią mojego świata ✨</div>
+  <button class="btn" onclick="showLove()">Kliknij mnie ❤️</button>
+</header>
+
+<section>
+  <div class="card">
+    <h2>💌 Wiadomość dla Ciebie</h2>
+    <p class="love-letter">
+      Amelciu 💖
+      <br><br>
+      Chciałem Ci tylko powiedzieć, że jesteś dla mnie kimś wyjątkowym.
+      Każdy Twój uśmiech robi mi dzień lepszym, a każda chwila z Tobą jest bezcenna.
+      Jesteś moją księżniczką i chcę, żebyś zawsze o tym pamiętała 👑
+      <br><br>
+      Kocham Cię ❤️
+    </p>
   </div>
+</section>
 
-  <script>
-    // Wiadomości przy Tak
-    const yesMessages = [
-      "TAKKKKK! Nie mogę się doczekać aż razem spędzimy ten piękny dzień skarbie, Kocham cię i bardzo się cieszę Amelciu Moja wspaniała piękna... ❤️",
-      "I przepraszam Cię bardzo Amelciu za to wszystko, jest mi cholernie źle z tym i potwornie tego żałuję i zrobiłbym wszystko, by cofnąć czas...",
-      "Nie wyobrażam sobie życia bez Ciebie misia, przysięgam"
-    ];
-    let yesIndex = 0;
+<section>
+  <div class="card">
+    <h2>✨ Dla Ciebie</h2>
+    <p class="love-letter">
+      Jesteś powodem, dla którego się uśmiecham.
+      Jesteś moim spokojem, kiedy wszystko inne jest chaosem.
+      I jesteś moim „zawsze” ❤️
+    </p>
+  </div>
+</section>
 
-    // Funkcja dla Tak
-    function sayYes() {
-      document.getElementById("message").textContent = yesMessages[yesIndex];
-      if (yesIndex < yesMessages.length - 1) yesIndex++;
+<footer>
+  Stworzone z miłością ❤️ dla Amelci
+</footer>
 
-      // Po kliknięciu Tak przycisk Nie znika
-      document.getElementById("noBtn").style.display = "none";
-    }
+<script>
 
-    // Wiadomości przy Nie
-    const noMessages = [
-      "A może jednak zmienisz zdanie? 🥺",
-      "Rozumiem, może innym razem 😢",
-      "Żartowałem, nie masz wyjścia 😂🫵",
-      "No zgódź się 😒",
-      "PROSZEEEEEEEE",
-      "Dostaniesz coś słodkiego :)"
-    ];
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+  document.body.appendChild(heart);
 
-    // Funkcja dla Nie
-    function sayNo() {
-      const randomIndex = Math.floor(Math.random() * noMessages.length);
-      document.getElementById("message").textContent = noMessages[randomIndex];
-    }
+  setTimeout(() => heart.remove(), 7000);
+}
 
-    // Funkcja do uciekającego przycisku Nie
-    function moveNo() {
-      const btn = document.getElementById("noBtn");
-      const card = document.getElementById("card");
-      const cardRect = card.getBoundingClientRect();
+setInterval(createHeart, 180);
 
-      const maxX = cardRect.width - btn.offsetWidth;
-      const maxY = cardRect.height - btn.offsetHeight;
+function showLove() {
+  alert("Amelciu ❤️ Jesteś moją księżniczką!");
+}
 
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
+</script>
 
-      btn.style.position = 'absolute';
-      btn.style.left = randomX + 'px';
-      btn.style.top = randomY + 'px';
-    }
-  </script>
 </body>
 </html>
