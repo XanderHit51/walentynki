@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Dla Amelci ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #ff9a9e, #fad0c4, #fbc2eb);
+      overflow-x: hidden;
+      color: white;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3.2em;
+      animation: fadeInDown 2s ease;
+    }
+
+    .subtitle {
+      font-size: 1.4em;
+      margin-top: 15px;
+      opacity: 0.9;
+      animation: fadeIn 3s ease;
+    }
+
+    .btn {
+      margin-top: 25px;
+      padding: 15px 32px;
+      border: none;
+      border-radius: 40px;
+      font-size: 1.1em;
+      cursor: pointer;
+      background: white;
+      color: #ff4e50;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    section {
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .card {
+      max-width: 750px;
+      margin: auto;
+      background: rgba(255,255,255,0.15);
+      padding: 35px;
+      border-radius: 25px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease;
+    }
+
+    .love-letter {
+      font-size: 1.3em;
+      line-height: 1.9em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      opacity: 0.85;
+    }
+
+    .heart {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 7s infinite ease-in;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -9px; left: 0; }
+    .heart::after { left: -9px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Dla mojej Księżniczki Amelci 👑💖</h1>
+  <div class="subtitle">Jesteś najpiękniejszą częścią mojego świata ✨</div>
+  <button class="btn" onclick="showLove()">Kliknij mnie ❤️</button>
+</header>
+
+<section>
+  <div class="card">
+    <h2>💌 Wiadomość dla Ciebie</h2>
+    <p class="love-letter">
+      Amelciu 💖
+      <br><br>
+      Chciałem Ci tylko powiedzieć, że jesteś dla mnie kimś wyjątkowym.
+      Każdy Twój uśmiech robi mi dzień lepszym, a każda chwila z Tobą jest bezcenna.
+      Jesteś moją księżniczką i chcę, żebyś zawsze o tym pamiętała 👑
+      <br><br>
+      Kocham Cię ❤️
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>✨ Dla Ciebie</h2>
+    <p class="love-letter">
+      Jesteś powodem, dla którego się uśmiecham.
+      Jesteś moim spokojem, kiedy wszystko inne jest chaosem.
+      I jesteś moim „zawsze” ❤️
+    </p>
+  </div>
+</section>
+
+<footer>
+  Stworzone z miłością ❤️ dla Amelci
+</footer>
+
+<script>
+
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 7000);
+}
+
+setInterval(createHeart, 180);
+
+function showLove() {
+  alert("Amelciu ❤️ Jesteś moją księżniczką!");
+}
+
+</script>
+
+</body>
+</html>
